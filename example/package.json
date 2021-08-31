@@ -1,0 +1,13 @@
+{
+  "name": "frules-gen-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "frules-gen": "frules-gen",
+    "frules-gen:watch": "frules-gen -w"
+  },
+  "dependencies": {
+    "frules-gen": "^1.0.0"
+  }
+}

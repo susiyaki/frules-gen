@@ -1,0 +1,27 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // helpers
+    function isAuthenticated() {
+  return request.auth != null;
+}
+
+
+    // documents
+    match /users/{uid} {
+  function isValidUser(data) {
+  return data.size() == 2
+    && 'email' in data && data.email is string
+    && 'displayName' in data && data.displayName is string
+      && data.displayName.size() > 0
+      && data.displayName.size() <= 20;
+}
+
+
+  allow get: if isAuthenticated(uid);
+
+  allow write: if isAuthenticated(uid)
+    && request.auth.uid == uid
+    && isValidUser(request.resource.data);
+}
+
+}

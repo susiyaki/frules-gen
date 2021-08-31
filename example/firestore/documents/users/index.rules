@@ -1,0 +1,9 @@
+match /users/{uid} {
+  include "documents/users/schema.rules";
+
+  allow get: if isAuthenticated(uid);
+
+  allow write: if isAuthenticated(uid)
+    && request.auth.uid == uid
+    && isValidUser(request.resource.data);
+}
