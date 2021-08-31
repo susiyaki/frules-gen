@@ -1,0 +1,14 @@
+{
+  "name": "susiyaki",
+  "version": "1.0.0",
+  "description": "generate firestore.rules from multiple .rules files",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/susiyaki/frules-gen"
+  },
+  "keywords": ["firebase", "firestore", "frules-gen"],
+  "author": "susiyaki <susiyaki.dev@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/susiyaki/frules-gen"
+}
