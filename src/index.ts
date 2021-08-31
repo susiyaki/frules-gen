@@ -27,7 +27,9 @@ if (!options.watch) {
 
 const _ignorePatterns = () => {
   return options.ignore.map((ign) =>
-    ign.replace("**", ".*").replace("*", ".*").replace("/", "/")
+    ign
+      .replace(new RegExp("\\*\\*", "g"), ".*")
+      .replace(new RegExp("\\*", "g"), ".*")
   );
 };
 
