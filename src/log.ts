@@ -27,7 +27,7 @@ export class Log implements FrulesGenLog {
   }
 
   readonly default = (content: string, path: string) => {
-    this.log(content, this.timestamp(), this.pathFormat(path));
+    this.log(this.timestamp(), content, this.pathFormat(path));
   };
 
   readonly success = (path: string) => {
