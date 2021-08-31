@@ -27,7 +27,7 @@ class Log {
             this.default(chalk_1.default.bgGray(chalk_1.default.black(chalk_1.default.black(" REMOVE "))), path);
         };
         this.change = (path) => {
-            this.default(chalk_1.default.bgYellowBright(chalk_1.default.black(" ADD ")), path);
+            this.default(chalk_1.default.bgYellowBright(chalk_1.default.black(" CHANGE ")), path);
         };
         this.log = console.log.bind(console);
         this.pathFormat = (path) => path.replace(options.srcDir, "");

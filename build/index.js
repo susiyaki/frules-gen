@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
 const chokidar_1 = __importDefault(require("chokidar"));
+const posix_1 = __importDefault(require("path/posix"));
 const process_1 = require("process");
 const cli_1 = require("./cli");
 const custom_error_1 = require("./custom-error");
@@ -16,7 +17,7 @@ const log = new log_1.Log(options);
 if (!options.watch) {
     try {
         (0, generate_rules_1.generateRules)(options);
-        log.success(`Generated ${options.out}`);
+        log.success(`Generated ${posix_1.default.join(options.out, options.outFileName)}`);
         (0, process_1.exit)(0);
     }
     catch (err) {

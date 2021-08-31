@@ -5,20 +5,24 @@ import { ArgsError } from "./custom-error";
 import type { FrulesGenOptions } from "./cli";
 
 export const generateRules = (options: FrulesGenOptions) => {
-  const srcRoot = path.join(__dirname, options.srcDir);
-  const srcFile = path.join(__dirname, options.srcDir, options.srcRootFile);
-  const destFile = path.join(__dirname, options.out);
+  let isInitial = true;
+  const srcRoot = path.join(options.srcDir);
+  const srcFile = path.join(options.srcDir, options.srcRootFile);
+  const destFile = path.join(options.out, options.outFileName);
 
   try {
     fs.writeFileSync(destFile, resolveImports(srcFile));
   } catch (err) {
     if (err instanceof Error) {
-      throw new ArgsError(err.message);
+      if (isInitial) throw new ArgsError(err.message);
+      throw new Error(err.message);
     }
   }
 
   function resolveImports(filePath: string) {
     const rulesFile = fs.readFileSync(filePath).toString();
+
+    isInitial = false;
 
     const fileElements = rulesFile.split(
       /include "([A-Za-z0-9\-\_\/.]+\.rules)";/

@@ -47,6 +47,6 @@ export class Log implements FrulesGenLog {
   };
 
   readonly change = (path: string) => {
-    this.default(chalk.bgYellowBright(chalk.black(" ADD ")), path);
+    this.default(chalk.bgYellowBright(chalk.black(" CHANGE ")), path);
   };
 }
