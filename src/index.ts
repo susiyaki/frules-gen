@@ -6,6 +6,7 @@ import { getOptions } from "./cli";
 import { ArgsError } from "./custom-error";
 import { generateRules } from "./generate-rules";
 import { Log } from "./log";
+import { logoString } from "./logo";
 
 const options = getOptions();
 
@@ -66,7 +67,8 @@ watcher
     log.default(
       `Ready to generate rules. Watching ${chalk.underline(
         `${options.srcDir}/**/*.rules`
-      )}`,
+      )}
+      ${chalk.bgWhiteBright(chalk.black(logoString))}\n\n`,
       ""
     )
   );
