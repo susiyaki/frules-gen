@@ -9,7 +9,6 @@
   },
   "keywords": ["firebase", "firestore", "frules-gen"],
   "scripts": {
-    "dev": "nodemon",
     "build": "tsc",
     "start": "yarn build && node build/index.js"
   },
@@ -18,7 +17,6 @@
   "homepage": "https://github.com/susiyaki/frules-gen",
   "devDependencies": {
     "@types/node": "^16.7.8",
-    "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   }
