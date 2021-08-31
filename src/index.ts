@@ -15,7 +15,7 @@ const log = new Log(options);
 if (!options.watch) {
   try {
     generateRules(options);
-    log.success(`Generated ${path.join(options.out, options.outFileName)}`);
+    log.success(`Generated ${path.join(options.outDir, options.outFileName)}`);
     exit(0);
   } catch (err) {
     if (err instanceof Error) {
@@ -25,9 +25,19 @@ if (!options.watch) {
   }
 }
 
+const _ignorePatterns = () => {
+  return options.ignore.map((ign) =>
+    ign.replace("**", ".*").replace("*", ".*").replace("/", "/")
+  );
+};
+
+const ignorePatterns = _ignorePatterns();
+
 /* Watch mode */
 const watcher = chokidar.watch(options.srcDir, {
-  ignored: (pathname: string) => pathname.includes("tests"),
+  ignored: (pathname: string) => {
+    return !!ignorePatterns.find((ign) => new RegExp(ign).test(pathname));
+  },
   ignoreInitial: true,
 });
 
