@@ -7,8 +7,8 @@ import type { FrulesGenOptions } from "./cli";
 export const generateRules = (options: FrulesGenOptions) => {
   let isInitial = true;
   const srcRoot = path.join(options.srcDir);
-  const srcFile = path.join(options.srcDir, options.srcRootFile);
-  const destFile = path.join(options.out, options.outFileName);
+  const srcFile = path.join(options.srcDir, options.srcFileName);
+  const destFile = path.join(options.outDir, options.outFileName);
 
   try {
     fs.writeFileSync(destFile, resolveImports(srcFile));
