@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const chalk_1 = __importDefault(require("chalk"));
 const chokidar_1 = __importDefault(require("chokidar"));
+const posix_1 = __importDefault(require("path/posix"));
 const process_1 = require("process");
 const cli_1 = require("./cli");
 const custom_error_1 = require("./custom-error");
@@ -16,7 +17,7 @@ const log = new log_1.Log(options);
 if (!options.watch) {
     try {
         (0, generate_rules_1.generateRules)(options);
-        log.success(`Generated ${options.out}`);
+        log.success(`Generated ${posix_1.default.join(options.out, options.outFileName)}`);
         (0, process_1.exit)(0);
     }
     catch (err) {
@@ -27,7 +28,7 @@ if (!options.watch) {
     }
 }
 /* Watch mode */
-const watcher = chokidar_1.default.watch(options.src, {
+const watcher = chokidar_1.default.watch(options.srcDir, {
     ignored: (pathname) => pathname.includes("tests"),
     ignoreInitial: true,
 });
@@ -51,7 +52,7 @@ watcher
     .on("change", log.change)
     .on("unlink", log.remove)
     .on("error", log.error)
-    .on("ready", () => log.default(`Ready to generate rules. Watching ${chalk_1.default.underline(`${options.src}/**/*.rules`)}`, ""));
+    .on("ready", () => log.default(`Ready to generate rules. Watching ${chalk_1.default.underline(`${options.srcDir}/**/*.rules`)}`, ""));
 watcher
     .on("ready", execGenerateRules)
     .on("add", execGenerateRules)

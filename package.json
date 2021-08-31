@@ -1,8 +1,9 @@
 {
   "name": "frules-gen",
   "version": "1.0.0",
-  "description": "generate firestore.rules from multiple .rules files",
-  "main": "index.js",
+  "description": "A CLI to generate firestore.rules from multiple .rules files",
+  "bin": "bin/frules-gen",
+  "main": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/susiyaki/frules-gen"
@@ -10,7 +11,8 @@
   "keywords": [
     "firebase",
     "firestore",
-    "frules-gen"
+    "frules-gen",
+    "cli"
   ],
   "scripts": {
     "dev": "ts-node src/index.ts",
@@ -24,14 +26,18 @@
     "@types/command-line-args": "^5.2.0",
     "@types/command-line-usage": "^5.0.2",
     "@types/node": "^16.7.8",
-    "chalk": "^4.1.2",
-    "dayjs": "^1.10.6",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "command-line-args": "^5.2.0",
-    "command-line-usage": "^6.1.1"
-  }
+    "command-line-usage": "^6.1.1",
+    "dayjs": "^1.10.6"
+  },
+  "files": [
+    "bin/",
+    "build/"
+  ]
 }

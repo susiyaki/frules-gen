@@ -6,6 +6,7 @@ export interface FrulesGenOptions {
   srcDir: string;
   srcRootFile: string;
   out: string;
+  outFileName: string;
   watch?: boolean;
   help?: null;
   ignoreSrc?: string; // TODO
@@ -14,7 +15,8 @@ export interface FrulesGenOptions {
 const optionDefinitions: OptionDefinition[] = [
   { name: "srcDir", type: String, defaultValue: "./firestore" },
   { name: "srcRootFile", type: String, defaultValue: "./index.rules" },
-  { name: "out", alias: "o", type: String, defaultValue: "./firestore.rules" },
+  { name: "out", alias: "o", type: String, defaultValue: "./" },
+  { name: "outFileName", type: String, defaultValue: "firestore.rules" },
   {
     name: "watch",
     alias: "w",
@@ -44,17 +46,32 @@ const sections: Section[] = [
     optionList: [
       {
         name: "srcDir",
-        typeLabel: "{underline path}",
-        defaultOption: true,
+        typeLabel: "{underline string}",
         defaultValue: "./firestore",
         description: "Root directory where {underline index.rules} is located",
       },
       {
+        name: "srcRootFile",
+        typeLabel: "{underline string}",
+        defaultOption: true,
+        defaultValue: "./index.rules",
+      },
+      {
         name: "out",
         alias: "o",
-        typeLabel: "{underline path}",
+        typeLabel: "{underline string}",
         defaultValue: "./",
         description: "Output destination directory",
+      },
+      {
+        name: "outFileName",
+        typeLabel: "{underline string}",
+        defaultValue: "firestore.rules",
+      },
+      {
+        name: "ignoreSrc",
+        typeLabel: "{underline string}",
+        description: "TODO",
       },
       {
         name: "watch",

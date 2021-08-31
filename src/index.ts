@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import chokidar from "chokidar";
+import path from "path/posix";
 import { exit } from "process";
 import { getOptions } from "./cli";
 import { ArgsError } from "./custom-error";
@@ -14,7 +15,7 @@ const log = new Log(options);
 if (!options.watch) {
   try {
     generateRules(options);
-    log.success(`Generated ${options.out}`);
+    log.success(`Generated ${path.join(options.out, options.outFileName)}`);
     exit(0);
   } catch (err) {
     if (err instanceof Error) {

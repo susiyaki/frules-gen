@@ -8,19 +8,23 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const custom_error_1 = require("./custom-error");
 const generateRules = (options) => {
-    const srcRoot = path_1.default.join(__dirname, options.src);
-    const srcFile = path_1.default.join(__dirname, options.src, "index.rules");
-    const destFile = path_1.default.join(__dirname, options.out);
+    let isInitial = true;
+    const srcRoot = path_1.default.join(options.srcDir);
+    const srcFile = path_1.default.join(options.srcDir, options.srcRootFile);
+    const destFile = path_1.default.join(options.out, options.outFileName);
     try {
         fs_1.default.writeFileSync(destFile, resolveImports(srcFile));
     }
     catch (err) {
         if (err instanceof Error) {
-            throw new custom_error_1.ArgsError(err.message);
+            if (isInitial)
+                throw new custom_error_1.ArgsError(err.message);
+            throw new Error(err.message);
         }
     }
     function resolveImports(filePath) {
         const rulesFile = fs_1.default.readFileSync(filePath).toString();
+        isInitial = false;
         const fileElements = rulesFile.split(/include "([A-Za-z0-9\-\_\/.]+\.rules)";/);
         let resolvedRulesFile = "";
         let isImport = false;
