@@ -68,7 +68,7 @@ function isAuthenticated() {
 
 ### CLI options
 
-[frules-gen options document]()
+[frules-gen options document](https://github.com/susiyaki/frules-gen/tree/main/doc/OPTIONS.md)
 
 
 ## Author
