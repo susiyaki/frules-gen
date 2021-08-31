@@ -1,20 +1,39 @@
-name: Node.js Package
+name: Publish Node.js Package
+
 on:
   release:
     types: [created]
+
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install -g yarn
   build:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@octocat'
-      - run: npm install -g yarn
-      - run: yarn
+          node-version: 12
+      - run: yarn ci
+      - run: npm uninstall -g yarn
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+      - run: yarn ci
       - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  post:
+    needs: [prepare, build, publish-gpr]
+    runs-on: ubuntu-latest
+    steps:
       - run: npm uninstall -g yarn
