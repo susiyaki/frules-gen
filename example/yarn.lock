@@ -151,10 +151,8 @@ find-replace@^3.0.0:
   dependencies:
     array-back "^3.0.1"
 
-frules-gen@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/frules-gen/-/frules-gen-1.0.0.tgz#936cc93db8067e48adda89b3d99d37c93763f812"
-  integrity sha512-F3hS//7wIrAWokdJVed++qnaE/WOLuEMspGVhVYRRyPAOgBaOC5E08mQYDhfK3I1gU+kgQphD3gQhrvawDJFUg==
+frules-gen@../:
+  version "1.0.4"
   dependencies:
     chalk "^4.1.2"
     chokidar "^3.5.2"
