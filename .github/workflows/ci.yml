@@ -3,23 +3,15 @@ name: CI
 on: [push]
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm install -g yarn
   build:
-    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 12
+      - run: npm install -g yarn
+      - run: yarn
       - name: Build and Test
         run: yarn ci
-      - run: npm uninstall -g yarn
-  post:
-    needs: [prepare, build]
-    runs-on: ubuntu-latest
-    steps:
       - run: npm uninstall -g yarn
