@@ -14,7 +14,7 @@ const log = new Log(options);
 if (!options.watch) {
   try {
     generateRules(options);
-    log.default(`Generated ${options.out}/firestore.rules`, "");
+    log.success(`Generated ${options.out}`);
     exit(0);
   } catch (err) {
     if (err instanceof Error) {
@@ -25,7 +25,7 @@ if (!options.watch) {
 }
 
 /* Watch mode */
-const watcher = chokidar.watch(options.src, {
+const watcher = chokidar.watch(options.srcDir, {
   ignored: (pathname: string) => pathname.includes("tests"),
   ignoreInitial: true,
 });
@@ -52,7 +52,7 @@ watcher
   .on("ready", () =>
     log.default(
       `Ready to generate rules. Watching ${chalk.underline(
-        `${options.src}/**/*.rules`
+        `${options.srcDir}/**/*.rules`
       )}`,
       ""
     )

@@ -1,5 +1,5 @@
 {
-  "name": "susiyaki",
+  "name": "frules-gen",
   "version": "1.0.0",
   "description": "generate firestore.rules from multiple .rules files",
   "main": "index.js",

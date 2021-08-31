@@ -5,9 +5,9 @@ import { ArgsError } from "./custom-error";
 import type { FrulesGenOptions } from "./cli";
 
 export const generateRules = (options: FrulesGenOptions) => {
-  const srcRoot = options.src;
-  const srcFile = path.join(options.src, "index.rules");
-  const destFile = path.join(options.out, "firestore.rules");
+  const srcRoot = path.join(__dirname, options.srcDir);
+  const srcFile = path.join(__dirname, options.srcDir, options.srcRootFile);
+  const destFile = path.join(__dirname, options.out);
 
   try {
     fs.writeFileSync(destFile, resolveImports(srcFile));

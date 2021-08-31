@@ -23,7 +23,7 @@ export class Log implements FrulesGenLog {
 
   constructor(options: FrulesGenOptions) {
     this.log = console.log.bind(console);
-    this.pathFormat = (path: string) => path.replace(options.src, "");
+    this.pathFormat = (path: string) => path.replace(options.srcDir, "");
   }
 
   readonly default = (content: string, path: string) => {

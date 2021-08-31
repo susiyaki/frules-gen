@@ -3,16 +3,18 @@ import commandLineUsage, { Section } from "command-line-usage";
 import { exit } from "process";
 
 export interface FrulesGenOptions {
-  src: string;
+  srcDir: string;
+  srcRootFile: string;
   out: string;
   watch?: boolean;
   help?: null;
-  ignoreSrc?: string // TODO
+  ignoreSrc?: string; // TODO
 }
 
 const optionDefinitions: OptionDefinition[] = [
-  { name: "src", type: String, defaultValue: "./firestore" },
-  { name: "out", alias: "o", type: String, defaultValue: "." },
+  { name: "srcDir", type: String, defaultValue: "./firestore" },
+  { name: "srcRootFile", type: String, defaultValue: "./index.rules" },
+  { name: "out", alias: "o", type: String, defaultValue: "./firestore.rules" },
   {
     name: "watch",
     alias: "w",
@@ -41,7 +43,7 @@ const sections: Section[] = [
     header: "options",
     optionList: [
       {
-        name: "src",
+        name: "srcDir",
         typeLabel: "{underline path}",
         defaultOption: true,
         defaultValue: "./firestore",
