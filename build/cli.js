@@ -8,7 +8,8 @@ const command_line_args_1 = __importDefault(require("command-line-args"));
 const command_line_usage_1 = __importDefault(require("command-line-usage"));
 const process_1 = require("process");
 const optionDefinitions = [
-    { name: "src", type: String, defaultValue: "./firestore" },
+    { name: "srcDir", type: String, defaultValue: "./firestore" },
+    { name: "srcRootFile", type: String, defaultValue: "./index.rules" },
     { name: "out", alias: "o", type: String, defaultValue: "./firestore.rules" },
     {
         name: "watch",
@@ -35,7 +36,7 @@ const sections = [
         header: "options",
         optionList: [
             {
-                name: "src",
+                name: "srcDir",
                 typeLabel: "{underline path}",
                 defaultOption: true,
                 defaultValue: "./firestore",

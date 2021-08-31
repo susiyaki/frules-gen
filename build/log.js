@@ -30,7 +30,7 @@ class Log {
             this.default(chalk_1.default.bgYellowBright(chalk_1.default.black(" ADD ")), path);
         };
         this.log = console.log.bind(console);
-        this.pathFormat = (path) => path.replace(options.src, "");
+        this.pathFormat = (path) => path.replace(options.srcDir, "");
     }
 }
 exports.Log = Log;

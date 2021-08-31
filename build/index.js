@@ -27,7 +27,7 @@ if (!options.watch) {
     }
 }
 /* Watch mode */
-const watcher = chokidar_1.default.watch(options.src, {
+const watcher = chokidar_1.default.watch(options.srcDir, {
     ignored: (pathname) => pathname.includes("tests"),
     ignoreInitial: true,
 });
@@ -51,7 +51,7 @@ watcher
     .on("change", log.change)
     .on("unlink", log.remove)
     .on("error", log.error)
-    .on("ready", () => log.default(`Ready to generate rules. Watching ${chalk_1.default.underline(`${options.src}/**/*.rules`)}`, ""));
+    .on("ready", () => log.default(`Ready to generate rules. Watching ${chalk_1.default.underline(`${options.srcDir}/**/*.rules`)}`, ""));
 watcher
     .on("ready", execGenerateRules)
     .on("add", execGenerateRules)

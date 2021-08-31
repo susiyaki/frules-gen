@@ -8,8 +8,8 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const custom_error_1 = require("./custom-error");
 const generateRules = (options) => {
-    const srcRoot = path_1.default.join(__dirname, options.src);
-    const srcFile = path_1.default.join(__dirname, options.src, "index.rules");
+    const srcRoot = path_1.default.join(__dirname, options.srcDir);
+    const srcFile = path_1.default.join(__dirname, options.srcDir, options.srcRootFile);
     const destFile = path_1.default.join(__dirname, options.out);
     try {
         fs_1.default.writeFileSync(destFile, resolveImports(srcFile));
