@@ -1,8 +1,11 @@
 name: Publish Node.js Package
 
 on:
+  push:
+    tags:
+      - 'v*'
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
