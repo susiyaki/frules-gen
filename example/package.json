@@ -8,6 +8,6 @@
     "frules-gen:watch": "frules-gen -w"
   },
   "dependencies": {
-    "frules-gen": "^1.0.0"
+    "frules-gen": "../"
   }
 }
