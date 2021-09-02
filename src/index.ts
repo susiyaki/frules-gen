@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import chokidar from "chokidar";
-import path from "path/posix";
+import path from "path";
 import { exit } from "process";
 import { getOptions } from "./cli";
 import { ArgsError } from "./custom-error";
